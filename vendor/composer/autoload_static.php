@@ -9,6 +9,7 @@ class ComposerStaticInita24ebe19e553c614cacc085de0f9cea1
     public static $files = array (
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
+        '52297380f94b398eb54cd21a912a0ef4' => __DIR__ . '/../..' . '/Test/Helper/Helper.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -56,7 +57,7 @@ class ComposerStaticInita24ebe19e553c614cacc085de0f9cea1
         ),
         'Test\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/test',
+            0 => __DIR__ . '/../..' . '/Test',
         ),
         'Symfony\\Polyfill\\Ctype\\' => 
         array (

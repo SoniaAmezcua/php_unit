@@ -20,4 +20,18 @@ class firstTest extends TestCase
 
     }
 
+    public function testToComplete()
+    {
+        $this->markTestIncomplete(); #para indicar que el test esta incompleto
+    }
+
+    public function testSkipped()
+    {
+        if(true)
+        {
+            $this->markTestSkipped("Test que no se ejecuta"); 
+        }
+        
+    }
+
 }

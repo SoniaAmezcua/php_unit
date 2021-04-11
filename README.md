@@ -14,3 +14,9 @@ composer dump-autoload
 
 #Ejecutar una suite 
 ./vendor/bin/phpunit --testsuite unit
+
+#Ejecutar un solo test
+./vendor/bin/phpunit --filter testItcreatesACart
+
+#Ejecutar para generar reporte
+./vendor/bin/phpunit --testdox-html docs/index.html

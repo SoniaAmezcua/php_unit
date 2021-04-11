@@ -2,49 +2,68 @@
 
 namespace Test\Unit;
 
-use PHPUnit\Framework\TestCase;
-use App\Shoppingcart\Cart;
 use App\Shoppingcart\CartItem;
+use App\Shoppingcart\CartIsEmptyException;
+use Test\TestBase;
 
-class CarTest extends TestCase
-{
-    public function testCreatesACart()
+class CarTest extends TestBase
+{    
+    /** @test  
+     * @testdox Crear un carrito de compras*/
+    public function ItCreatesACart()
     {
-        $item = new CartItem("Mouse", 20);
-        $cart = new Cart();
+        $item = createItem("Mouse", 20); //new CartItem("Mouse", 20);        
 
-        $this->assertEquals(0, $cart->count());
-        $cart->add($item);
-        $this->assertEquals(1, $cart->count());
+        $this->assertEquals(0, $this->cart->count());
+        $this->cart->add($item);
+        $this->assertEquals(1, $this->cart->count());
     }
 
-    public function testAddsMultiplesItems()
+    /** @test 
+     * @testdox Agregar multiples items*/
+    public function AddsMultiplesItems()
     {
         $items = [];
-        $cart = new Cart();
 
-        $this->assertEquals(0, $cart->count());
+        $this->assertEquals(0, $this->cart->count());
         for($i = 1; $i <= 5; $i++){
             array_push($items, new CartItem("Mouse", 20));
         }
-        $cart->addItems($items);
-        $this->assertEquals(count($items), $cart->count());
+        $this->cart->addItems($items);
+        $this->assertEquals(count($items), $this->cart->count());
     }
 
     public function testIsEmpty()
     {
-        $cart = new Cart();
-        $this->assertTrue($cart->isEmpty());
+        $this->assertTrue($this->cart->isEmpty());
     }
 
-    public function testItRemoveAnItem()
+    /** @test */
+    public function ItThrowsAnEmptyException()
+    {
+        $this->expectException(CartIsEmptyException::class);
+        $this->cart->getFirstItem();
+    }
+
+    /** @test 
+     * @testdox Eliminar un Item*/
+    public function ItRemoveAnItem()
     {
         $item = new CartItem("Mouse", 20);
-        $cart = new Cart();
-        $cart->add($item);
-        $this->assertEquals(1, $cart->count());
-        $cart->remove($item->id);
-        $this->assertTrue($cart->isEmpty());
+        $this->cart->add($item);
+        $this->assertEquals(1, $this->cart->count());
+        $this->cart->remove($item->id);
+        $this->assertTrue($this->cart->isEmpty());
+    }
+
+    /** @test 
+     * @testdox Prueba de conexión a base de datos*/
+    public function ItStoresAnCart()
+    {
+        #Método para probar conección a base de datos
+        $this->conn->insert($this->cart);
+        $cart = $this->conn->get($this->cart->id);
+        $this->assertEquals($cart->id, $this->cart->id);
     }
 
 

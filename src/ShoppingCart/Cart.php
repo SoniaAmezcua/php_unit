@@ -25,7 +25,10 @@ class Cart
 
     public function getFirstItem(): CartItem
     {
-        return reset($this->cart);
+        $item = reset($this->cart);
+        if(!$item)
+            throw new CartIsEmptyException();
+        return $item;
     }
 
     public function remove($id): void

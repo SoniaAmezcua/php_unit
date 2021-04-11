@@ -1,7 +1,22 @@
 <phpunit
 bootstrap = "./vendor/autoload.php"
-colors = "true">
-<testsuite name="unit">
-    <directory suffix=".php">./test/unit</directory>
+colors = "true"
+stopOnError="false"
+stopOnFailure="false"
+stopOnIncomplete="false"
+stopOnSkipped="false"
+stopOnRisky="false"
+timeoutForSmallTests="1"
+timeoutForMediumTests="10"
+timeoutForLargeTests="60"
+convertErrorsToExceptions="true"
+convertNoticesToExceptions="true"
+convertWarningsToExceptions="true"
+forceCoversAnnotation="false"
+cacheTokens="false"
+verbose="false"
+>
+<testsuite name="Unit">
+    <directory suffix=".php">./Test/Unit</directory>
 </testsuite>
 </phpunit>

@@ -9,8 +9,9 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Test\\":"test/"
-        }
+            "Test\\":"Test/"
+        },
+        "files":["Test/Helper/Helper.php"]
     }
 }
 
